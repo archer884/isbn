@@ -86,23 +86,23 @@ mod tests {
 
     #[test]
     fn isnb_10_good() {
-        "99921-58-10-7".parse::<Isbn>().unwrap();
+        assert!("99921-58-10-7".parse::<Isbn>().is_ok());
     }
 
     #[test]
     #[should_panic]
     fn isbn_10_bad() {
-        "99921-58-10-8".parse::<Isbn>().unwrap();
+        assert!("99921-58-10-8".parse::<Isbn>().is_ok());
     }
 
     #[test]
     fn isbn_13_good() {
-        "978-0-306-40615-7".parse::<Isbn>().unwrap();
+        assert!("978-0-306-40615-7".parse::<Isbn>().is_ok());
     }
 
     #[test]
     #[should_panic]
     fn isbn_13_bad() {
-        "978-0-306-40615-8".parse::<Isbn>().unwrap();
+        assert!("978-0-306-40615-8".parse::<Isbn>().is_ok());
     }
 }
