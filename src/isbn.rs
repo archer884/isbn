@@ -37,15 +37,13 @@ impl str::FromStr for Isbn {
     fn from_str(s: &str) -> Result<Isbn, Self::Err> {
         let values: Vec<_> = s.chars().filter_map(|c| as_value(c)).collect();
         match values.len() {
-            10 => if check_10(&values) {
-                Ok(Isbn { raw: s.to_owned(), values: values })
-            } else {
-                Err(IsbnParseError::from_raw(IsbnParseErrorType::FailedCheck10, s))
+            10 => match check_10(&values) {
+                true => Ok(Isbn { raw: s.to_owned(), values: values }),
+                false => Err(IsbnParseError::from_raw(IsbnParseErrorType::FailedCheck10, s)),
             },
-            13 => if check_13(&values) {
-                Ok(Isbn { raw: s.to_owned(), values: values })
-            } else {
-                Err(IsbnParseError::from_raw(IsbnParseErrorType::FailedCheck13, s))
+            13 => match check_13(&values) {
+                true => Ok(Isbn { raw: s.to_owned(), values: values }),
+                false => Err(IsbnParseError::from_raw(IsbnParseErrorType::FailedCheck13, s)),
             },
             _ => Err(IsbnParseError::from_raw(IsbnParseErrorType::WrongLength, s)),
         }
