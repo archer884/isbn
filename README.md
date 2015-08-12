@@ -7,4 +7,4 @@ In theory, I want to add a feature to let you generate a check digit from a sequ
 
     Usage: isbn <number>
 
-The program just spits out whether or not the number is valid and, if not, why not.
+The program just spits out whether or not the number is valid and, if not, why not. You can supply any number of ISBNs to test.
