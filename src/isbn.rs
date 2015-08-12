@@ -56,7 +56,6 @@ impl fmt::Display for Isbn {
     }
 }
 
-
 fn check_10(s: &[u32]) -> bool {
     s.iter().cloned().enumerate().map(|(idx, n)| n * (10 - idx as u32)).sum::<u32>() % 11 == 0
 }
